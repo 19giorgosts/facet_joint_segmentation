@@ -1,0 +1,12 @@
+HookFile: bscript
+
+Library:
+    Extension: _hierarchy
+        Sources:
+             _hierarchy.c
+    Extension: _vq
+        Sources:
+             _vq.c
+    Extension: _optimal_leaf_ordering
+        Sources:
+             _optimal_leaf_ordering.c
