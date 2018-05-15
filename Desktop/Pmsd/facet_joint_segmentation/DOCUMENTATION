@@ -1,0 +1,11 @@
+DOCUMENTATION : 
+
+
+H load_one_volume douleuei kanonika, girizei volume, volume_name
+
+Exei thema otn kanei processing to label kai sigkekrimena to : 
+                label = crop_ND_volume_with_bounding_box(label, bbmin, bbmax)
+EFTIAKSE KAPWS !!! 
+
+
+11X144X144 = 228096 WHY ??
