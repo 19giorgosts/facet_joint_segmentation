@@ -1,5 +1,5 @@
 [data]
-data_root             = /mnt/nas/Facet_joint_segmentation/Pmsd_giorgos/datasets/training_set/Patients
+data_root             = /mnt/nas/Facet_joint_segmentation/Pmsd_giorgos/facet_joint_segmentation/datasets/training_set/Patients
 data_names            = config/train_names_all.txt
 modality_postfix      = [Flair, T1, T1c, T2]
 label_postfix         = seg
@@ -8,12 +8,12 @@ with_ground_truth     = True
 batch_size            = 5
 data_shape            = [19, 64, 64, 4]
 label_shape           = [11, 64, 64, 1]
-label_convert_source  = [0, 1, 2, 4]
-label_convert_target  = [0, 0, 0, 1]
+label_convert_source  = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+label_convert_target  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 batch_slice_direction = axial
-train_with_roi_patch  = True
-label_roi_mask        = [1,4]
-roi_patch_margin      = 5
+train_with_roi_patch  = 
+label_roi_mask        = 
+roi_patch_margin      = 
 
 [network]
 net_type            = MSNet
