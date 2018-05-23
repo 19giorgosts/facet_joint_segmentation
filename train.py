@@ -78,7 +78,7 @@ def train(config_file):
     sess.run(tf.global_variables_initializer())  
     saver = tf.train.Saver()
     
-    dataloader = DataLoader(config_data)
+    dataloader = DataLoader(config_data) #here starts the data loading and processing
     dataloader.load_data()
     
     # 4, start to train
@@ -95,7 +95,7 @@ def train(config_file):
         tempy = train_pair['labels']
         opt_step.run(session = sess, feed_dict={x:tempx, w: tempw, y:tempy})
         
-        '''if(n%config_train['test_iteration'] == 0):
+        if(n%config_train['test_iteration'] == 0):
             batch_dice_list = []
             for step in range(config_train['test_step']):
                 train_pair = dataloader.get_subimage_batch()
@@ -108,7 +108,7 @@ def train(config_file):
             t = time.strftime('%X %x %Z')
             print(t, 'n', n,'loss', batch_dice)
             loss_list.append(batch_dice)
-            np.savetxt(loss_file, np.asarray(loss_list))'''
+            np.savetxt(loss_file, np.asarray(loss_list))
             
         if((n+1)%config_train['snapshot_iteration']  == 0):
             saver.save(sess, config_train['model_save_prefix']+"_{0:}.ckpt".format(n+1))

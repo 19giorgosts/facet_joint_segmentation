@@ -35,7 +35,7 @@ class DataLoader():
         self.file_postfix  = config.get('file_postfix', 'nii')
         self.data_names    = config.get('data_names', None)
         self.data_num      = config.get('data_num', None)
-        self.data_resize   = config.get('data_resize', None)
+        self.data_resize   = config.get('data_resize', True)
         self.with_flip     = config.get('with_flip', False)
 
         if(self.label_convert_source and self.label_convert_target):
