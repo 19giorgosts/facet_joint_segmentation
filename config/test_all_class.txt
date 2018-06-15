@@ -1,0 +1,41 @@
+[data]
+data_root         = /mnt/nas/Facet_joint_segmentation/Pmsd_giorgos/datasets/Patients/
+save_folder       = result
+data_names        = config/test_names.txt
+modality_postfix  = [Ultra]
+file_postfix      = nii
+
+[network1ax]
+net_type            = MSNet
+net_name            = MSNet
+downsample_twice    = True
+data_shape          = [19, 180, 160, 1]
+label_shape         = [11, 180, 160, 1]
+class_num           = 2
+model_file          = model/msnet_100.ckpt
+
+
+
+[network2ax]
+net_type            = MSNet
+net_name            = MSNet
+downsample_twice    = True
+data_shape          = [19, 96, 96, 1]
+label_shape         = [11, 96, 96, 1]
+class_num           = 2
+model_file          = model/msnet_100.ckpt
+
+
+[network3ax]
+net_type            = MSNet
+net_name            = MSNet
+downsample_twice    = False
+data_shape          = [19, 96, 96, 1]
+label_shape         = [11, 96, 96, 1]
+class_num           = 2
+model_file          = model/msnet_100.ckpt
+
+
+[testing]
+test_slice_direction = axial
+

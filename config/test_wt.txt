@@ -1,0 +1,19 @@
+[data]
+data_root         = /home/guotwang/data/BRATS2015_Training
+save_folder       = result
+data_names        = config/test_names.txt
+modality_postfix  = [Ultra]
+file_postfix      = nii
+
+[network1ax]
+net_type            = MSNet
+net_name            = MSNet
+downsample_twice    = True
+data_shape          = [19, 180, 160, 1]
+label_shape         = [11, 180, 160, 1]
+class_num           = 2
+model_file          = model/msnet_wt32_10000.ckpt
+
+[testing]
+test_slice_direction = all
+whole_tumor_only     = True

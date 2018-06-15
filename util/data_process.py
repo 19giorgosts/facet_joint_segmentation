@@ -60,6 +60,7 @@ def load_nifty_volume_as_array(filename, with_header = False):
     data = img.get_data()
     #print("SHAPE_DATA",data.shape[0],data.shape[1])
     data = np.transpose(data)
+    print("LOAD TYPE",img.get_data_dtype())
     if(with_header):
         return data, img.affine, img.header
     else:

@@ -9,16 +9,16 @@ batch_size            = 5
 data_shape            = [12, 64, 64, 1]
 label_shape           = [4, 64, 64, 1]
 label_convert_source  = [0, 1]
-label_convert_target  = [0, 1] 
-batch_slice_direction = sagittal
-train_with_roi_patch  = 
+label_convert_target  = [0, 1]
+batch_slice_direction = coronal
+train_with_roi_patch  = False
 label_roi_mask        = 
 roi_patch_margin      = 
 
 [network]
 net_type            = MSNet
-net_name            = MSNet_EN32sg
-downsample_twice    = False
+net_name            = MSNet_TC32cr
+downsample_twice    = True
 class_num           = 2
 
 [training]
@@ -29,5 +29,5 @@ snapshot_iteration = 500
 start_iteration    = 0
 test_iteration     = 100
 test_step          = 10
-model_pre_trained  = model/msnet_en32sg_init
-model_save_prefix  = model/msnet_en32sg
+model_pre_trained  = model/msnet_tc32_init
+model_save_prefix  = model/msnet_tc32cr

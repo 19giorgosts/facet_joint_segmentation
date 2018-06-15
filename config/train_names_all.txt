@@ -1,1 +1,4 @@
-Patient_brats
+Patient_1/set0
+Patient_1/set1
+Patient_1/set3
+Patient_1/set4

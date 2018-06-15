@@ -35,7 +35,7 @@ class DataLoader():
         self.file_postfix  = config.get('file_postfix', 'nii')
         self.data_names    = config.get('data_names', None)
         self.data_num      = config.get('data_num', None)
-        self.data_resize   = config.get('data_resize', True)
+        self.data_resize   = config.get('data_resize', None)
         self.with_flip     = config.get('with_flip', False)
 
         if(self.label_convert_source and self.label_convert_target):
@@ -111,6 +111,9 @@ class DataLoader():
 
                 if(self.data_resize):
                     volume = resize_ND_volume_to_given_shape(volume, self.data_resize, 1)
+                    print("volume " ,volume_name," resized to : ",volume.shape)
+
+
                 if(mod_idx ==0):
                     weight = np.asarray(volume > 0, np.float32)
                 if(self.intensity_normalize[mod_idx]):
@@ -124,6 +127,7 @@ class DataLoader():
             in_size.append(volume_size)
             if(self.with_ground_truth):
                 label,label_name = self.__load_one_volume(self.patient_names[i], self.label_postfix)
+                print("Using label:",label_name)
                 if(mod_idx == 0):
                     margin = 5
                     bbmin, bbmax = get_ND_bounding_box(label, margin)
@@ -132,7 +136,8 @@ class DataLoader():
                 label = crop_ND_volume_with_bounding_box(label, bbmin, bbmax)
 
                 if(self.data_resize):
-                    label = resize_3D_volume_to_given_shape(label, self.data_resize, 0)
+                    label = resize_ND_volume_to_given_shape(label, self.data_resize, 0)
+                    print("volume " ,label_name," resized to : ",label.shape)
                 Y.append(label)
             if((i+1)%50 == 0 or (i+1) == data_num):
                 print('Data load, {0:}% finished'.format((i+1)*100.0/data_num))
@@ -189,11 +194,14 @@ class DataLoader():
             else:
                 flip = False
             self.patient_id = random.randint(0, len(self.data)-1)
+            #print(self.patient_id) = 0
             data_volumes = [x for x in self.data[self.patient_id]]
             weight_volumes = [self.weight[self.patient_id]]
             boundingbox = None
+
             if(self.with_ground_truth):
                 label_volumes = [self.label[self.patient_id]]
+
                 if(train_with_roi_patch):
                     mask_volume = np.zeros_like(label_volumes[0])
                     for mask_label in label_roi_mask:
@@ -222,6 +230,8 @@ class DataLoader():
                                                                      range(minh, maxh), 
                                                                      range(minw, maxw))]
 
+               
+
                 if(self.label_convert_source and self.label_convert_target):
                     label_volumes[0] = convert_label(label_volumes[0], self.label_convert_source, self.label_convert_target)
         
@@ -231,6 +241,7 @@ class DataLoader():
             sub_label_shape =[label_slice_number, label_shape[1], label_shape[2]]
             center_point = get_random_roi_sampling_center(volume_shape, sub_label_shape, batch_sample_model, boundingbox)
             sub_data = []
+
             for moda in range(len(transposed_volumes)):
                 sub_data_moda = extract_roi_from_volume(transposed_volumes[moda],center_point,sub_data_shape)
                 if(flip):
@@ -265,7 +276,7 @@ class DataLoader():
                     
         data_batch = np.asarray(data_batch, np.float32)
         weight_batch = np.asarray(weight_batch, np.float32)
-        #label_batch = np.asarray(label_batch, np.int64)
+        label_batch = np.asarray(label_batch, np.int64)
         batch = {}
         batch['images']  = np.transpose(data_batch,   [0, 2, 3, 4, 1])
         batch['weights'] = np.transpose(weight_batch, [0, 2, 3, 4, 1])
