@@ -1,0 +1,2 @@
+Patient_brats/HGG
+Patient_brats/LGG

@@ -1,0 +1,3 @@
+model_checkpoint_path: "msnet_en32cr_100.ckpt"
+all_model_checkpoint_paths: "msnet_en32cr_50.ckpt"
+all_model_checkpoint_paths: "msnet_en32cr_100.ckpt"

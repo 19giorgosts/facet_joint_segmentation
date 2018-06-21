@@ -1,0 +1,33 @@
+[data]
+data_root             = /mnt/nas/Facet_joint_segmentation/Pmsd_giorgos/datasets/Patients
+data_names            = config_brats/train_names_all.txt 
+modality_postfix      = [Flair]
+label_postfix         = Label
+file_postfix          = nii
+with_ground_truth     = True
+batch_size            = 5
+data_shape            = [12, 64, 64, 1]
+label_shape           = [4, 64, 64, 1]
+label_convert_source  = [0, 1, 2, 3, 4]
+label_convert_target  = [0, 1, 1, 1, 1]
+batch_slice_direction = coronal
+train_with_roi_patch  = False
+label_roi_mask        = 
+roi_patch_margin      = 
+
+[network]
+net_type            = MSNet
+net_name            = MSNet_WT32cr
+downsample_twice    = True
+class_num           = 2
+
+[training]
+learning_rate      = 1e-3
+decay              = 1e-7
+maximal_iteration  = 100
+snapshot_iteration = 50
+start_iteration    = 1
+test_iteration     = 10
+test_step          = 10
+model_pre_trained  = model_brats/msnet_wt32cr_init
+model_save_prefix  = model_brats/msnet_wt32cr

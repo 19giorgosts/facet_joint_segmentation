@@ -1,0 +1,93 @@
+[data]
+data_root         = /mnt/nas/Facet_joint_segmentation/Pmsd_giorgos/datasets/Patients
+save_folder       = result
+data_names        = config_brats/test_names.txt
+modality_postfix  = [Flair]
+file_postfix      = nii
+label_postfix    = Label
+
+[network1ax]
+net_type            = MSNet
+net_name            = MSNet_WT32
+downsample_twice    = True
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_wt32_100.ckpt
+
+[network1sg]
+net_type            = MSNet
+net_name            = MSNet_WT32sg
+downsample_twice    = True
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_wt32sg_100.ckpt
+
+[network1cr]
+net_type            = MSNet
+net_name            = MSNet_WT32cr
+downsample_twice    = True
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_wt32cr_100.ckpt
+
+
+[network2ax]
+net_type            = MSNet
+net_name            = MSNet_TC32
+downsample_twice    = True
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_tc32_100.ckpt
+
+[network2sg]
+net_type            = MSNet
+net_name            = MSNet_TC32sg
+downsample_twice    = True
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_tc32sg_100.ckpt
+
+[network2cr]
+net_type            = MSNet
+net_name            = MSNet_TC32cr
+downsample_twice    = True
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_tc32cr_100.ckpt
+
+[network3ax]
+net_type            = MSNet
+net_name            = MSNet_EN32
+downsample_twice    = False
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_en32_100.ckpt
+
+[network3sg]
+net_type            = MSNet
+net_name            = MSNet_EN32sg
+downsample_twice    = False
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_en32sg_100.ckpt
+
+[network3cr]
+net_type            = MSNet
+net_name            = MSNet_EN32cr
+downsample_twice    = False
+data_shape          = [12, 64, 64, 1]
+label_shape         = [4, 64, 64, 1]
+class_num           = 2
+model_file          = model_brats/msnet_en32cr_100.ckpt
+
+[testing]
+test_slice_direction = all
+whole_tumor_only = False
