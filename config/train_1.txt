@@ -5,9 +5,9 @@ modality_postfix      = [Ultra]
 label_postfix         = seg
 file_postfix          = nii
 with_ground_truth     = True
-batch_size            = 5
-data_shape            = [12, 64, 64, 1]
-label_shape           = [4, 64, 64, 1]
+batch_size            = 8
+data_shape            = [8, 64, 64, 1]
+label_shape           = [8, 64, 64, 1]
 label_convert_source  = [0, 1]
 label_convert_target  = [0, 1]
 batch_slice_direction = axial
@@ -17,8 +17,8 @@ roi_patch_margin      =
 
 [network]
 net_type            = VNet
-net_name            = VNet_WT32
-downsample_twice    = True
+net_name            = VNet_WT32ax
+downsample_twice    = False
 class_num           = 2
 
 [training]
@@ -30,5 +30,5 @@ start_iteration    = 0
 test_iteration     = 50
 test_step          = 10
 model_pre_trained  =
-model_save_prefix  = model/vnet
+model_save_prefix  = model/vnet_wt32ax
 

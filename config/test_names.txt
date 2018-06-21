@@ -1,1 +1,1 @@
-Patient_1/test_set
+Patient_1/test_data
